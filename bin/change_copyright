@@ -9,6 +9,8 @@ root="$(pwd)"
 
 if [ "$(uname)" == 'Darwin' ]; then
     find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i '' "s#COPYRIGHT_HOLDER#$copyright#" {} \;
+    sed -i '' "s#COPYRIGHT_HOLDER#$copyright#" "$root/LICENSE"
 else 
     find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i "s#COPYRIGHT_HOLDER#$copyright#" {} \;
+    sed -i "s#COPYRIGHT_HOLDER#$copyright#" "$root/LICENSE"
 fi
