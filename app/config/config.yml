@@ -1,0 +1,39 @@
+imports:
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+parameters:
+    locale: en
+
+framework:
+    serializer: { enabled: true }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:
+        enable_annotations: false
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: false
+
+twig:
+    form_themes:
+        - bootstrap_3_layout.html.twig
+
+doctrine:
+    dbal:
+        url: %database_url%
+        charset:  UTF8
+
+tactician:
+    method_inflector: tactician.handler.method_name_inflector.handle_class_name_without_suffix

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html dir="{% block html_dir %}ltr{% endblock %}" lang="{% block html_lang %}en{% endblock %}">
+    <head>
+        <title>{{ block('title') }}</title>
+
+        {# put global styles here #}
+        {{ block('stylesheets') }}
+
+        {# put global scripts here #}
+        {{ block('scripts') }}
+
+        {{ block('head') }}
+    </head>
+    <body class="{{ block('body_class') }}">
+        <header role="main">
+            {{ block('header') }}
+        </header>
+        {{ block('body') }}
+        <footer role="main">
+            {{ block('footer') }}
+        </footer>
+    </body>
+</html>

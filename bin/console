@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+/*
+ * This file is part of chrisguitarguy/package
+ *
+ * Copyright (c) COPYRIGHT_HOLDER.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Debug\Debug;
+
+set_time_limit(0);
+require __DIR__.'/../app/autoload.php';
+
+$input = new ArgvInput();
+$env = $input->getParameterOption(array('--env', '-e'), getenv('APP_ENVIRONMENT') ?: 'prod');
+$debug = filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN) && !$input->hasParameterOption(['--no-debug', '']) && $env !== 'prod';
+
+if ($debug) {
+    Debug::enable();
+}
+
+$kernel = new AppKernel($env, $debug);
+$application = new Application($kernel);
+$application->run($input);
