@@ -8,9 +8,9 @@ package="$1"
 root="$(pwd)"
 
 if [ "$(uname)" == 'Darwin' ]; then
-    find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i '' "s#chrisguitarguy/package#$package#" {} \;
+    find "$root/src" "$root/test"  "$root/app" "$root/web" -type f -name '*.php' -exec sed -i '' "s#chrisguitarguy/package#$package#" {} \;
     sed -i '' "s#chrisguitarguy/package#$package#" "$root/composer.json"
 else 
-    find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i "s#chrisguitarguy/package#$package#" {} \;
+    find "$root/src" "$root/test"  "$root/app" "$root/web" -type f -name '*.php' -exec sed -i "s#chrisguitarguy/package#$package#" {} \;
     sed -i "s#chrisguitarguy/package#$package#" "$root/composer.json"
 fi
