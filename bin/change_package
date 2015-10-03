@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 'vendor/package'"
+    exit 1
+fi
+
+package="$1"
+root="$(pwd)"
+
+if [ "$(uname)" == 'Darwin' ]; then
+    find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i '' "s#chrisguitarguy/package#$package#" {} \;
+    sed -i '' "s#chrisguitarguy/package#$package#" "$root/composer.json"
+else 
+    find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i "s#chrisguitarguy/package#$package#" {} \;
+    sed -i "s#chrisguitarguy/package#$package#" "$root/composer.json"
+fi

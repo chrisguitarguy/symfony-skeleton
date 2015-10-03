@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 'Changed\\Namespace'"
+    exit 1
+fi
+
+namespace="$1"
+root="$(pwd)"
+
+if [ "$(uname)" == 'Darwin' ]; then
+    find "$root/src" "$root/test" "$root/app" -type f -name '*.php' -exec sed -i '' "s#Chrisguitarguy\\\\Package#$namespace#" {} \;
+    sed -i '' "s#Chrisguitarguy\\\\\\\\Package#${namespace//\\\\/\\\\\\\\}#" "$root/composer.json"
+else 
+    find "$root/src" "$root/test" "$root/app" -type f -name '*.php' -exec sed -i "s#Chrisguitarguy\\\\Package#$namespace#" {} \;
+    sed -i "s#Chrisguitarguy\\\\\\\\Package#${namespace//\\\\/\\\\\\\\}#" "$root/composer.json"
+fi
+
+composer="$(which composer)"
+if [ -n "$composer" ]; then
+    $composer dump-autoload
+else
+    echo 'Could Not Locate Composer, don\'t forget to run "composer dump-autoload"
+fi

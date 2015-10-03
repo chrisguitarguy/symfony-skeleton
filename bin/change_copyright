@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 'Your Name <you@example.com>'"
+    exit 1
+fi
+
+copyright="$1"
+root="$(pwd)"
+
+if [ "$(uname)" == 'Darwin' ]; then
+    find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i '' "s#COPYRIGHT_HOLDER#$copyright#" {} \;
+else 
+    find "$root/src" "$root/test" -type f -name '*.php' -exec sed -i "s#COPYRIGHT_HOLDER#$copyright#" {} \;
+fi
