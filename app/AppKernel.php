@@ -11,7 +11,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-final class AppKernel extends Kernel
+class AppKernel extends Kernel
 {
     public static function fromEnvironment()
     {
