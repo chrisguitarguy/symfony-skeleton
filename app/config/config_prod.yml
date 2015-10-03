@@ -12,8 +12,8 @@ monolog:
             handler: syslog
         syslog:
             type: syslogudp
-            host: logs.papertrailapp.com
-            port: 39555
+            host: someotherhost.com
+            port: 12345
             level: info
         console:
             type:  console
