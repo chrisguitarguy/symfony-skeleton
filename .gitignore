@@ -2,8 +2,6 @@
 /coverage/*
 /web/bundles/*
 .env
-
-# ignore certain files
 *.pyc
 *.swp
 *.dmg
@@ -14,8 +12,6 @@
 *.tar
 *.zip
 *.7z
-
-# ignore compiled files
 *.com
 *.class
 *.dll
@@ -23,13 +19,8 @@
 *.app
 *.o
 *.so
-
-
-# system files
 .DS_Store*
 ehthumbs.db
 Icon?
 Thumbs.db
-
-# ignore Sass cache
 .sass-cache
